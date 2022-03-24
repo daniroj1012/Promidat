@@ -1,6 +1,5 @@
 from prince import PCA as PCA_Prince
-#import matplotlib.pyplot as plt
-
+import matplotlib.pyplot as plt
 class ACP:
     def __init__(self, datos, n_componentes = 5): 
         self.__datos = datos
