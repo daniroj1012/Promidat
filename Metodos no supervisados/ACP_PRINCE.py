@@ -1,5 +1,6 @@
 from prince import PCA as PCA_Prince
 import matplotlib.pyplot as plt
+import pandas as pd
 class ACP:
     def __init__(self, datos, n_componentes = 5): 
         self.__datos = datos
@@ -94,3 +95,22 @@ class ACP:
                 plt.text(cor[i, 0] * scale * 1.15, cor[i, 1] * scale * 1.15, 
                          self.correlacion_var.index[i], 
                          color = 'steelblue', ha = 'center', va = 'center')
+
+
+
+class myacp(ACP):
+    def __init__(self,datos, n_componentes = 5, columna=[]):
+        datos2=pd.DataFrame(datos).drop(columna,axis=1)
+        super().__init__(datos2,n_componentes)
+    
+        
+    def plot_plano_principalhijo(self,porcentaje):
+        indices1=self.cos2_ind.index[self.cos2_ind.iloc[:,0] < porcentaje].tolist()
+        indices2=self.cos2_ind.index[self.cos2_ind.iloc[:,1] < porcentaje].tolist()
+        listaindices=list(dict.fromkeys(indices1+indices2))
+        self.datos=(self.datos).drop(listaindices, axis=0, inplace=True)
+        return super().plot_plano_principal(ejes=[0,1])
+
+        
+             
+            

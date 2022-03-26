@@ -1,5 +1,9 @@
 import ACP_PRINCE
+import os
 from ACP_PRINCE import ACP
+
+os.chdir('/Users/danielrojaschacon/Documents/Cursos/Experto ML- Promidat/Git-Promidat/Promidat' )
+
 
 class my_acp(ACP):
     def __init__(self,datos, n_componentes = 5, columna):
