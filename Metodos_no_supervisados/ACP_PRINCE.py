@@ -103,7 +103,10 @@ class myacp(ACP):
         datos2=pd.DataFrame(datos).drop(columna,axis=1)
         super().__init__(datos2,n_componentes)
 
-    
+    def cambiadatos(self):
+        indices=self.cos2_ind.index[self.cos2_ind.iloc[:,0] <0.1].tolist()
+        super().datos=self.datos
+        return super().datos
 
     def plot_plano_principal(self, ejes=[0, 1],ind_labels=True, titulo='Plano Principal'):
         indices=self.cos2_ind.index[self.cos2_ind.iloc[:,0] <0,].tolist()
